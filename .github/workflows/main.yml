@@ -10,6 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: build
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js
@@ -20,6 +21,8 @@ jobs:
         run: npm install
       - name: Building site
         run: npm run build
+        env:
+          GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
       - name: Compressing build
         run: tar -czvf build.tar.gz public
       - name: Uploading build
