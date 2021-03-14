@@ -2,7 +2,7 @@ name: Build and Deploy to Netlify
 
 on:
   push:
-    branches: [ hs.setup-github-actions ]
+    branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,33 +28,8 @@ jobs:
           name: build
           path: build.tar.gz
 
-  deploy-preview:
+  deploy:
     needs: build
-    environment: production
-    runs-on: ubuntu-latest
-    steps:
-      - name: Downloading build
-        uses: actions/download-artifact@v2
-        with:
-          name: build
-      - name: Extracting build
-        run: tar -xzvf build.tar.gz
-      - name: Deploying to Netlify
-        uses: nwtgck/actions-netlify@v1.1
-        with:
-          publish-dir: './public'
-          production-branch: main
-          deploy-message: "Deploy preview from GitHub Actions with ${{ github.sha }}"
-          enable-pull-request-comment: false
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 15
-
-  deploy-production:
-    needs: deploy-preview
     environment: production
     runs-on: ubuntu-latest
     steps:
@@ -72,8 +47,8 @@ jobs:
           production-branch: main
           deploy-message: "Deploy from GitHub Actions with ${{ github.sha }}"
           enable-pull-request-comment: false
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
+          enable-commit-comment: false
+          overwrites-pull-request-comment: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
