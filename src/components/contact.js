@@ -7,13 +7,11 @@ const Contact = ( { contacts } ) => {
     <div>
       {contacts.map( contact => {
         return (
-          <a href={contact.url} target="_blank" rel="noreferrer">
-            <img
-              key={contact.icon}
-              src={getIcon(contact.icon)}
-              alt={contact.icon}
-            />
-          </a>
+          <div key={contact.icon}>
+            <a href={contact.url} target="_blank" rel="noreferrer">
+              <img src={getIcon(contact.icon)} alt={contact.icon} />
+            </a>
+          </div>
           )
       })}
     </div>
