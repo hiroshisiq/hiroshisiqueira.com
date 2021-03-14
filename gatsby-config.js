@@ -1,15 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Hiroshi Siqueira's Blog`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Hiroshi Siqueira`,
+      summary: `who is software developer based in Sao Carlos/Brazil helping to connect the country at Loggi.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
-    social: {
-      twitter: `kylemathews`,
-    },
+    description: `A personal blog powered by Gatsby.`,
+    siteUrl: `https://www.hiroshisiqueira.com/`
   },
   plugins: [
     `gatsby-plugin-image`,
