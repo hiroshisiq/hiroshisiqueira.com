@@ -2,7 +2,7 @@ name: Build and Deploy to Netlify
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, hs.preview-deploy ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -42,7 +42,7 @@ jobs:
       - name: Deploying to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
-          production-deploy: true
+          production-deploy: false
           publish-dir: './public'
           production-branch: main
           deploy-message: "${{ github.event.head_commit.message }}"
