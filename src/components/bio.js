@@ -8,7 +8,7 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import getIcon from "../utils/get-icon"
+import Contact from "./contact"
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -38,7 +38,7 @@ const Bio = () => {
         className="bio-avatar"
         layout="fixed"
         formats={["AUTO", "WEBP", "AVIF"]}
-        src="../images/profile-pic.jpg"
+        src="../images/profile-pic.png"
         width={50}
         height={50}
         quality={95}
@@ -50,9 +50,7 @@ const Bio = () => {
         </p>
       )}
       {social && (
-        social.map( contact => {
-          return <img src={getIcon(contact.icon)} alt={contact.icon}/>
-        })
+        <Contact contacts={social}/>
       )}
     </div>
   )

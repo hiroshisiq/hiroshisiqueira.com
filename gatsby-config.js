@@ -8,8 +8,8 @@ module.exports = {
     description: `A personal blog powered by Gatsby.`,
     siteUrl: `https://www.hiroshisiqueira.com/`,
     social: [
-      { url: `www.github.com/hiroshisiq`, icon: 'github' },
-      { url: `www.linkedin.com/in/hiroshisiq`, icon: 'linkedin' }
+      { url: `https://www.github.com/hiroshisiq`, icon: 'github' },
+      { url: `https://www.linkedin.com/in/hiroshisiq`, icon: 'linkedin' }
     ]
   },
   plugins: [
