@@ -6,7 +6,11 @@ module.exports = {
       summary: `who is software developer based in Sao Carlos/Brazil helping to connect the country at Loggi.`,
     },
     description: `A personal blog powered by Gatsby.`,
-    siteUrl: `https://www.hiroshisiqueira.com/`
+    siteUrl: `https://www.hiroshisiqueira.com/`,
+    social: [
+      { url: `www.github.com/hiroshisiq`, icon: 'github' },
+      { url: `www.linkedin.com/in/hiroshisiq`, icon: 'linkedin' }
+    ]
   },
   plugins: [
     `gatsby-plugin-image`,
