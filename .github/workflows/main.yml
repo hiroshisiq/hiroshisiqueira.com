@@ -45,7 +45,7 @@ jobs:
           production-deploy: true
           publish-dir: './public'
           production-branch: main
-          deploy-message: "Deploy from GitHub Actions with ${{ github.sha }}"
+          deploy-message: "${{ github.event.head_commit.message }}"
           enable-pull-request-comment: false
           enable-commit-comment: false
           overwrites-pull-request-comment: false
