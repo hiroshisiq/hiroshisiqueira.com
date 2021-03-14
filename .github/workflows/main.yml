@@ -39,7 +39,6 @@ jobs:
           name: build
       - name: extract build
         run: tar -xzvf build.tar.gz
-      - uses: actions/checkout@v2
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
