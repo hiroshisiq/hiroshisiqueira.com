@@ -1,0 +1,55 @@
+name: Build and Deploy to Netlify
+
+on:
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+      - name: Installing dependencies
+        run: npm install
+      - name: Building site
+        run: npm run build
+      - name: Compressing build
+        run: tar -czvf build.tar.gz public
+      - name: Uploading build
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build.tar.gz
+
+  deploy:
+    needs: build
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Downloading build
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+      - name: Extracting build
+        run: tar -xzvf build.tar.gz
+      - name: Deploying to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          production-deploy: true
+          publish-dir: './public'
+          production-branch: main
+          deploy-message: "Deploy from GitHub Actions with ${{ github.sha }}"
+          enable-pull-request-comment: false
+          enable-commit-comment: false
+          overwrites-pull-request-comment: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 15
