@@ -2,7 +2,7 @@ name: Build and Deploy to Netlify
 
 on:
   push:
-    branches: [ main, hs.enable-analytics ]
+    branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: production
+    environment: build
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js
