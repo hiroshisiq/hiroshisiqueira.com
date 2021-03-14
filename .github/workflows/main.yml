@@ -2,12 +2,14 @@ name: Build and Deploy to Netlify
 
 on:
   push:
-    branches:
-      - hs.setup-github-actions
+    branches: [ hs.setup-github-actions ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Deploy to Netlify
