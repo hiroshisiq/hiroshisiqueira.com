@@ -17,9 +17,9 @@ jobs:
         with:
           node-version: '12.x'
       - name: Installing dependencies
-        run: npm install
+        run: yarn install
       - name: Building Gatsby site
-        run: gatsby build --log-pages
+        run: yarn build --log-pages
 
   deploy:
     needs: build
