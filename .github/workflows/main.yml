@@ -20,12 +20,22 @@ jobs:
         run: npm install
       - name: Building Gatsby site
         run: npm run build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: public
+          path: ./public
+          retention-days: 1
 
   deploy:
     needs: build
     environment: production
     runs-on: ubuntu-latest
     steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: public
       - uses: actions/checkout@v2
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1
