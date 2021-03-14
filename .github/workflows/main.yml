@@ -42,7 +42,7 @@ jobs:
       - name: Deploying to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
-          production-deploy: false
+          production-deploy: true
           publish-dir: './public'
           production-branch: main
           deploy-message: "${{ github.event.head_commit.message }}"
